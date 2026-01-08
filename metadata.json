@@ -1,0 +1,8 @@
+{
+  "name": "Margdarshak - 22nd Century Career Cockpit",
+  "description": "A futuristic career navigation super-app for Sri Chaitanya Global Vista, featuring hyper-glassmorphism, neural interfaces, and AI-driven guidance.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
