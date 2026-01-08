@@ -13,26 +13,27 @@ const OPPORTUNITIES = [
 
 const LiveFeed: React.FC = () => {
   return (
-    <footer className="fixed bottom-0 left-0 w-full z-50 glass-panel border-t border-cyan-500/20 py-2 overflow-hidden h-10">
+    <footer className="fixed bottom-0 left-0 w-full z-50 bg-slate-900 border-t border-slate-800 py-1.5 overflow-hidden h-9">
       <div className="flex items-center gap-4 h-full">
-        <div className="flex-shrink-0 px-4 flex items-center gap-2 border-r border-cyan-500/20 bg-cyan-900/20">
-          <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-[10px] font-bold text-cyan-300 tracking-[0.2em] uppercase">LIVE TRANSIMISSION</span>
+        <div className="flex-shrink-0 px-4 flex items-center gap-2 border-r border-slate-700">
+          <span className="text-[10px] font-bold text-white tracking-widest uppercase flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-red-500"></span>
+            Global Feed
+          </span>
         </div>
         
         <div className="flex-grow relative overflow-hidden">
-          <div className="flex gap-12 whitespace-nowrap animate-[marquee_40s_linear_infinite] hover:[animation-play-state:paused]">
+          <div className="flex gap-12 whitespace-nowrap animate-[marquee_50s_linear_infinite] hover:[animation-play-state:paused]">
             {[...OPPORTUNITIES, ...OPPORTUNITIES].map((op, idx) => (
-              <span key={idx} className="text-xs font-medium tracking-widest text-cyan-400/70 hover:text-cyan-300 cursor-default transition-colors">
-                <span className="text-cyan-500/30 mr-4">>>></span>
-                {op}
+              <span key={idx} className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+                {op} <span className="mx-6 text-slate-700">•</span>
               </span>
             ))}
           </div>
         </div>
         
-        <div className="flex-shrink-0 px-4 border-l border-cyan-500/20 text-[10px] font-mono text-cyan-500/60">
-          TIME_STAMP: {new Date().toLocaleTimeString()}
+        <div className="flex-shrink-0 px-4 text-[9px] font-medium text-slate-500 uppercase tracking-widest hidden sm:block">
+          Uptime: 99.9% • {new Date().toLocaleDateString()}
         </div>
       </div>
 

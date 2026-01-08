@@ -1,48 +1,76 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const Hero: React.FC = () => {
-  const [text, setText] = useState('');
-  const fullText = 'MARGDARSHAK: ACTIVATE YOUR FUTURE';
+interface HeroProps {
+  onStartClick: () => void;
+}
 
-  useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setText(fullText.slice(0, i));
-      i++;
-      if (i > fullText.length) clearInterval(interval);
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
-
+const Hero: React.FC<HeroProps> = ({ onStartClick }) => {
   return (
-    <section className="relative text-center py-10">
-      <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/10 blur-[100px] pointer-events-none rounded-full" />
-      
-      <div className="relative z-10 space-y-4">
-        <h2 className="font-futuristic text-5xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-200 to-cyan-500 drop-shadow-[0_0_30px_rgba(34,211,238,0.5)]">
-          {text}
-          <span className="animate-pulse inline-block w-1 h-12 bg-cyan-400 ml-2" />
-        </h2>
+    <div className="relative w-full min-h-[90vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
+      {/* Background Image Layer - High Res Motion Blur Campus */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-110 blur-[2px]"
+        style={{ 
+          backgroundImage: 'url("https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2066&auto=format&fit=crop")', // Symbolic campus placeholder matching high-tech feel
+          opacity: 0.4
+        }}
+      >
+        {/* Obsidian Deep Space Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/90 via-[#020617]/70 to-[#020617]"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
+        {/* Holographic school badge */}
+        <div className="inline-flex items-center gap-2 px-6 py-2 bg-cyan-500/10 backdrop-blur-md border border-cyan-500/30 rounded-full text-[10px] font-black tracking-[0.3em] text-cyan-400 uppercase mb-10 breathing-glow shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          Neural Uplink Established
+        </div>
         
-        <p className="max-w-2xl mx-auto text-lg md:text-xl font-light tracking-widest text-cyan-100/70 uppercase">
-          Neural-Synchronized Career Navigation for the 22nd Century
+        <div className="space-y-4 mb-10">
+          <h2 className="text-xl md:text-2xl font-bold text-slate-400 tracking-[0.5em] uppercase animate-pulse">
+            Margdarshak
+          </h2>
+          <h1 className="text-6xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-slate-500 tracking-tighter leading-[0.9] drop-shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+            ACTIVATE YOUR<br />
+            <span className="text-cyan-400">FUTURE.</span>
+          </h1>
+        </div>
+        
+        <p className="text-xl md:text-2xl text-slate-400 max-w-3xl font-light leading-relaxed mb-14">
+          Sri Chaitanya Global Vista's <span className="text-white font-bold">22nd-century</span> cockpit for professional navigation. Navigate through the stars of your potential.
         </p>
         
-        <div className="flex justify-center gap-12 pt-8">
-          {[
-            { label: 'Latency', value: '2ms' },
-            { label: 'Uptime', value: '99.9%' },
-            { label: 'Sync', value: 'Active' }
-          ].map((stat, idx) => (
-            <div key={idx} className="flex flex-col items-center">
-              <span className="text-[10px] uppercase text-cyan-500/50 mb-1">{stat.label}</span>
-              <span className="font-futuristic text-sm text-cyan-300">{stat.value}</span>
-            </div>
-          ))}
+        <div className="flex flex-wrap justify-center gap-8">
+          <button 
+            onClick={onStartClick}
+            className="group relative px-12 py-5 bg-cyan-500 text-slate-900 rounded-xl font-black text-lg transition-all shadow-[0_0_30px_rgba(34,211,238,0.4)] hover:shadow-[0_0_50px_rgba(34,211,238,0.6)] hover:-translate-y-1 active:scale-95 overflow-hidden"
+          >
+            <span className="relative z-10">INITIALIZE PATHWAY</span>
+            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
+          </button>
+          
+          <button 
+            onClick={() => {
+              const element = document.getElementById('hubs');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="px-12 py-5 bg-transparent border-2 border-slate-700 text-white rounded-xl font-black text-lg hover:bg-white hover:text-slate-900 transition-all hover:border-white shadow-lg"
+          >
+            EXPLORE HUBS
+          </button>
+        </div>
+
+        {/* School Name Overlay */}
+        <div className="mt-24 text-slate-500 font-black text-[10px] tracking-[0.8em] uppercase">
+          SRI CHAITANYA GLOBAL VISTA - THE NEW GENERATION SCHOOL
         </div>
       </div>
-    </section>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-10 left-10 w-32 h-32 border border-cyan-500/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
+      <div className="absolute top-40 right-20 w-16 h-16 border border-cyan-500/10 rounded-lg rotate-45 animate-pulse"></div>
+    </div>
   );
 };
 
